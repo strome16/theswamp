@@ -245,7 +245,7 @@ footer {
 
 /* Review Page Layout */
 .review { max-width: none; margin: 24px 0; }
-.review h2 { margin: 0 0 8px 0; color: #93c6ff;}
+.review h2 { margin: 0 0 8px 0; color: #93c6ff; }
 .review-side { grid-column: 1; }
 .review-body { grid-column: 2; grid-row: 1 / span 2; }
 
@@ -272,8 +272,6 @@ footer {
     max-width: 380px;
     border-radius: 10px;
     margin: 0;
-    border: 1px solid #1d2028;          /* subtle edge so it doesn't blend into bg */
-    border-radius: 10px; 
 }
 
 .review,
@@ -287,15 +285,8 @@ footer {
 .review-side > * + *{ margin-top: 14px; }
 
 .store-links {
-    list-style: none; 
-    margin: 8px 0 12px; 
-    padding: 0;
-    display: grid; 
-    grid-template-columns: 1fr;
-    gap: 10px;
-}
-@media (min-width: 560px){
-    .store-links { grid-template-columns: repeat(2, minmax(0.1fr));}
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
 }
 .store-links a {
     display: inline-block;
@@ -317,22 +308,8 @@ footer {
     padding-bottom: 4px;
 }
 
-.buy-header,
-.review-body h3 {
-  margin: 12px 0 8px;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-  font-size: 0.82rem;
-  padding-bottom: 0;                   /* no divider line */
-  border: 0;
-  color: #cfd4da;
-  margin-bottom: 6px;
-}
-
 /* streaming services row */
-.stream-row { display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 10px; }
+.stream-row { display: flex; gap: 10px; }
 .stream-row a { text-decoration: none; }
 
 .stream{
@@ -590,7 +567,6 @@ footer {
 .review-body .highlight-tracks {
   font-style: italic;
   color: #d4d8df;
-  margin-bottom: 10px;
   letter-spacing: 0.1px;     /* keeps italics clean */
   word-spacing: 0.5px;       /* tighter than before */
 }
@@ -605,4 +581,29 @@ footer {
 
 .review-body .highlight-tracks span:last-child::after {
   content: "";
+}
+
+.review-body h3 {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #e9edf1;          /* same as normal text */
+  text-transform: none;    /* removes all-caps look */
+  margin-bottom: 6px;
+  color: #cfd4da;
+}
+
+.review-body .highlight-tracks {
+  margin-bottom: 10px;
+}
+
+.site-logo img{
+  display:block;
+  height:180px;           /* adjust to taste */
+  width:auto;
+  filter: drop-shadow(0 0 2px rgba(0,0,0,.6)); /* subtle edge on hover bg */
+}
+
+/* Optional: swap to flat logo on very small screens */
+@media (max-width:520px){
+  .site-logo img { content: url("the-swamp-wordmark-flat.png"); }
 }
