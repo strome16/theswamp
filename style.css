@@ -585,8 +585,7 @@ footer {
 
 .review-body h3 {
   font-size: 1rem;
-  font-weight: 700;
-  color: #e9edf1;          /* same as normal text */
+  font-weight: 700;        /* same as normal text */
   text-transform: none;    /* removes all-caps look */
   margin-bottom: 6px;
   color: #cfd4da;
@@ -606,5 +605,93 @@ footer {
 /* Optional: swap to flat logo on very small screens */
 @media (max-width:520px){
   .site-logo img { content: url("the-swamp-wordmark-flat.png"); }
+}
+
+/* === New Releases Cards === */
+
+/* ==== New Releases card polish ==== */
+.new-release-card{
+  display: grid;
+  grid-template-columns: clamp(180px, 22vw, 280px) 1fr; /* bigger cover */
+  gap: 22px;
+  padding: 22px 24px;
+  background: #12141a;
+  border: 1px solid #2a2f3a;
+  border-radius: 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.03);
+  margin-bottom: 20px;
+}
+
+.new-release-card .nr-cover{
+  width: 100%;
+  aspect-ratio: 1 / 1;           /* perfect square */
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 10px 24px rgba(0,0,0,.35);
+}
+
+/* Headings match other cards (bright title, soft label color) */
+.new-release-card .nr-title{
+  margin: 0 0 6px;
+  line-height: 1.2;
+  font-weight: 800;
+  font-size: clamp(20px, 2.2vw, 28px);
+  color: #7cc7ff;                /* same tone as other card titles */
+  letter-spacing: .2px;
+}
+
+.new-release-card .nr-sub{
+  color: #9fb3cf;                /* muted header/subhead like other cards */
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  font-size: 12px;
+}
+
+/* Make the info fill the card nicely */
+.new-release-card .nr-meta{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px,1fr));
+  gap: 8px 18px;
+  margin: 12px 0 16px;
+}
+
+.new-release-card .nr-meta .key{
+  color: #8aa4c2;                /* label color used across the site */
+  margin-right: 6px;
+}
+
+.new-release-card .nr-meta .value{
+  color: #e9edf1;
+}
+
+/* Tag pills (reuse your site’s blue accent) */
+.new-release-card .nr-tags{
+  display: flex; 
+  flex-wrap: wrap; 
+  gap: 10px;
+}
+
+.new-release-card .nr-tags .tag{
+  display: inline-block;
+  padding: 8px 12px;
+  border: 1px solid #2a2f3a;
+  border-radius: 999px;
+  background: #1a1c24;
+  color: #a8d8ff;
+  font-weight: 700;
+  text-decoration: none;
+  line-height: 1;
+}
+
+/* Small screens: stack nicely */
+@media (max-width: 720px){
+  .new-release-card{
+    grid-template-columns: 1fr;
+  }
+  .new-release-card .nr-cover{
+    max-width: 320px;
+    justify-self: center;
+  }
 }
 
