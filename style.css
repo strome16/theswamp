@@ -246,6 +246,12 @@ footer {
 /* Review Page Layout */
 .review { max-width: none; margin: 24px 0; }
 .review h2 { margin: 0 0 8px 0; }
+.review-side { grid-column: 1; }
+.review-body { grid-column: 2; grid-row: 1 / span 2; }
+
+@media (max-width: 720px){
+  .review-body { grid-column: 1; grid-row: auto; }
+}
 
 .review-hero {
     display: grid;
@@ -288,15 +294,34 @@ footer {
     border: 1px solid #2a2f3a; border-radius: 10px;
     background: #1a1c24; color: #a8d8ff; font-weight: 700;
     text-decoration: none;
+    width: 100%;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.buy-header {
+    margin-top: 20px;
+    margin-bottom: 10px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #e9edf1;
+    padding-bottom: 4px;
 }
 
 /* streaming services row */
-.stream-row { display: flex; gap: 12px; }
+.stream-row { display: flex; gap: 10px; }
+.stream-row a { text-decoration: none; }
+
 .stream{
     display: inline-flex; align-items: center; gap: 10px;
     padding: 12px 18px; font-size: 15px;
     border: 1px solid #2a2f3a; border-radius:12px; background:#151823;
     color: #cfe3ff;
+    text-decoration: none;
+    flex: 1;
+    justify-content: center;
+    text-align: center;
+    box-sizing: border-box;
 }
 .stream svg { fill:currentColor; display: block; }
 
