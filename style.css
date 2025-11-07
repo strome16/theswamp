@@ -1,0 +1,524 @@
+    /*base page style*/
+    html {scroll-behavior: smooth;} /* smooth anchor scrolling */
+    body {
+        margin: 0; /* remove default browser margin around the page */
+        font: 16px/1.6 system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif;
+        background: #0b0c0f; /*dark background*/
+        color: #e9edf1; /* light text for contrast */
+    }
+
+    header {
+        padding: 16px 20px;                       /* space inside the header */
+        background: #12141a;                    /* header background*/
+        border-bottom: 1px solid #2a2f3a;       /* subtle divider line */
+        position: sticky;                         /* sticks to the top on scroll */
+        top: 0;                                 /* distance from the top of the window */
+        z-index: 10;                            /* ensures header stays above cards */
+    }
+
+    /* layout wor inside header: title left, nav right */
+.header-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+     h1 { 
+        margin: 0;          /* remove default top gap so header height is tighter*/
+        font-size: 26px;    /* page title size */
+    }
+
+    nav a {     /* navigation links */
+        color: #aab3be;
+        text-decoration: none;
+        font-weight: 700;
+        margin-left: 14px;
+        transition: color 0.2s ease;
+    }
+    nav a:hover {color: #e9edf1;}
+
+
+    /*Accessibility - add keyboard focus highlight to nav links*/
+    nav a:focus {
+        outline: 2px solid #7cc7ff;
+        outline-offset: 2px;
+    }
+
+
+/* search bar stuff */    
+.search-box {
+    margin: 20px 0 30px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+}
+
+.search-box button {
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #2a2f3a;
+    background: #1a1c24;
+    color: #e9edf1;
+    font-weight: 700;
+    cursor: pointer;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+.search-box button:hover {
+    background: #232635;
+    border-color: #7cc7ff;
+    box-shadow: 0 0 0 4px rgba(124,199,255,0.25);
+}
+
+.search-box button:focus {
+    outline: none;
+    border-color: #7cc7ff;
+
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 400px;
+    flex: 1 1 320px;
+    padding: 12px 14px;
+    border-radius: 10px;
+    border: 1px solid #2a2f3a;
+    background: #12141a;
+    color: #e9edf1;
+    font-size: 15px;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+/* Remove built-in 'X' clear button in search bar */
+input[type="search"]::-webkit-search-cancel-button,
+input[type="search"]::-webkit-search-decoration {
+    -webkit-appearance: none;
+    appearance: none;
+    display: none;
+}
+
+/* for FireFox */
+input[type="search"]::-moz-search-clear {
+    display: none;
+}
+
+.search-box input:focus {
+    outline: none;
+    border-color: #7cc7ff;
+    box-shadow: 0 0 0 4px rgba(124,199,255,0.25);
+}
+
+
+    /* page container */
+.container {
+  max-width: 1100px;          /* keeps lines readable on big screens */
+  margin: 0 auto;              /* center the content */
+  padding: 0 20px;             /* side padding */
+}
+
+    main {padding: 20px;           /* space around main content */}
+    p.hint {color: #aab3be;     /* muted text colour for hint paragraphs*/}
+
+
+
+    /* Album card containter (applies to every album)*/
+
+.album {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background: #12141a;
+    border: 1px solid #2a2f3a;
+    border-radius: 10px;
+    padding: 16px;
+    box-sizing: border-box;
+    transition: transform 0.2s ease, box-shadow 0.2s ease; /* keep one transition */
+    position: relative;
+}
+
+/* album title in the card*/
+.album h2 {
+    margin-top: 0;
+    color: #7cc7ff;
+    font-size: 20px;
+}
+
+.album > * { margin-top: 0; }
+
+/* responsive grid that lays out multiple album cards*/
+.album-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 24px;
+    align-items: stretch;
+}
+
+.album-link {
+    display: block;
+    height: 100%;
+    text-decoration: none;
+    color: inherit;
+    min-width: 0;
+}
+
+.album:hover,
+.album-link:hover .album,
+.album:focus-within {
+  transform: translateY(-2px) scale(1.01);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  border-color: #2a3140;
+  z-index: 2;
+}
+
+
+/* small metadata row under the title ((artist • year • stars))*/
+.album .meta {
+    margin: 6px 0 10px;
+    color: #aab3be;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+/* album cover image */
+.album .cover {
+    width: 100%;
+    aspect-ratio: 1 / 1; /*makes a neat square*/
+    object-fit: cover; /*filles the square without squishing*/
+    border-radius: 8px;
+    display: block;
+}
+
+/* star rating size*/
+.album .rating {
+    font-size: 16px;}
+
+/* readability tweak */
+.album p {line-height: 1.7;}
+
+.cover {
+    transition: opacity 0.3s ease;
+    opacity: 0;
+}
+.cover[loading="lazy"]:not([src=""]) {
+    opacity: 1;
+}
+
+/* tag row under summary (chip list)*/
+.tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 10px 0 0;
+}
+
+.tag {
+  cursor: pointer;
+  user-select: none;
+  transition: background 0.2s ease, border-color 0.2s ease;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 999px;
+  background: rgba(124, 199, 255, 0.12); /* soft accent */
+  border: 1px solid rgba(124, 199, 255, 0.25);
+  color: #a8d8ff;
+}
+
+/* slightly dim non-focused tags for contrast */
+.tag:focus, .tag:hover {
+    background: rgba(124, 199, 255, 0.25);
+    border-color: rgba(124, 199, 255, 0.45);
+}
+
+#about {
+    margin: 36px 0 20px;
+}
+
+footer {
+  color: #aab3be;
+  padding: 24px 0;
+  border-top: 1px solid #2a2f3a;
+  margin-top: 24px;
+  font-size: 14px;
+}
+
+/* Review Page Layout */
+.review { max-width: none; margin: 24px 0; }
+.review h2 { margin: 0 0 8px 0; }
+
+.review-hero {
+    display: grid;
+    grid-template-columns: 380px 1fr;
+    column-gap: 32px;
+    align-items: start;
+    gap: 20px;
+    border-top: 1px solid #2a2f3a;
+    padding-top: 20px;
+    padding-bottom: 40px;
+    margin-left: 0;
+}
+
+.review .cover { margin-left: 0; }
+
+.review-hero .cover {
+    width: 100%;
+    max-width: 380px;
+    border-radius: 10px;
+    margin: 0;
+}
+
+.review,
+.review:hover,
+.review:focus-within {
+    transform: none;
+    box-shadow: none;
+    border-color: #2a2f3a;
+}
+
+.review-side > * + *{ margin-top: 14px; }
+
+.store-links {
+    list-style: none; margin: 0; padding: 0;
+    display: flex; flex-direction: column; gap: 10px;
+}
+.store-links a {
+    display: inline-block;
+    padding: 10px 12px;
+    border: 1px solid #2a2f3a; border-radius: 10px;
+    background: #1a1c24; color: #a8d8ff; font-weight: 700;
+    text-decoration: none;
+}
+
+/* streaming services row */
+.stream-row { display: flex; gap: 12px; }
+.stream{
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 12px 18px; font-size: 15px;
+    border: 1px solid #2a2f3a; border-radius:12px; background:#151823;
+    color: #cfe3ff;
+}
+.stream svg { fill:currentColor; display: block; }
+
+
+
+/* Definition list (fact table) */
+.facts {
+    display: grid;
+    grid-template-columns: 140px 1fr;
+    column-gap: 14px;
+    row-gap: 8px;
+    margin: 0 0 14px 0;
+}
+.facts dt {
+    color: #aab3be;
+    font-weight: 700;
+}
+.facts dd {
+    margin: 0;
+}
+
+/* Buy / Stream buttons */
+.buy-links {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+
+.buy-links a {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 12px;
+    border-radius: 10px;
+    border: 1px solid #2a2f3a;
+    background: #1a1c24;
+    color: #a8d8ff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color .2s ease, box-shadow .2s ease, background .2s ease;
+}
+
+.buy-links a svg {
+    display: block;
+    flex: 0 0 auto;
+    fill: currentColor;
+    opacity: 0.95;
+}
+
+.buy-links a:hover {
+    background: #232635;
+    border-color: #7cc7ff;
+    box-shadow: 0 0 0 4px rgba(124,199,255,.18);
+}
+
+.btn-apple:hover { color: #ffd1f0; }
+.btn-spotify:hover { color: #b6ffd1; }
+
+@media (max-width: 720px) {
+    .review-hero{ grid-template-columns: 1fr; }
+    .stream-row{ flex-wrap: wrap;}
+}
+
+/* Review text spacing */
+.album h3 { margin-top: 20px; margin-bottom: 8px; }
+.review-body p { line-height: 1.7; margin: 0 0 12px; }
+
+/* mobile responsivness */
+@media (max-width: 640px) {
+    .review-hero { grid-template-columns: 1fr; }
+    .facts { grid-template-columns: 1fr;}
+}
+
+/*consistent verticality*/
+.album .cover { display: block; margin: 0 0 12px; }
+.album h2 { margin: 0 0 8px; line-height: 1.25; }
+.album .meta {margin: 0 0 10px; }
+.album p {margin: 0 0 12px;}
+
+.album .tags { margin-top: auto;}
+
+
+/* home blocks */
+.home-block { margin-top: 24px; }
+.block-head {
+    display: flex; align-items: baseline; justify-content: space-between;
+}
+.block-head .see-all {
+    color: #aab3be; text-decoration: none; font-weight: 700;
+}
+.block-head .see-all:hover { color: #e9edf1;}
+
+/* Home panel */
+.home-panel {
+    border: 1px solid #2a2f3a;
+    border-radius: 12px;
+    overflow: hidden;           /* makes header/body look connected */
+    margin-top: 24px;
+    background: #12141a;
+}
+
+/* header row inside panel */
+.panel-head {
+    background: #171922;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 16px;
+    border-bottom: 1px solid #2a2f3a;           /* divider between header and hint */
+}
+
+.panel-head-left {
+    display: flex;
+    flex-direction: column;
+}
+
+.panel-head h2 {
+    margin: 0;
+    font-size: 22px;
+    color: #e9edf1;
+}
+
+.panel-head .hint {
+    margin: 4px 0 0;
+    color: #aab3be;
+    font-size: 15px;
+}
+
+
+/* hint line under the header */
+.panel-sub {
+    margin: 0;
+    padding: 0 16px 12px;
+    color: #aab3be;
+    border-bottom: 1px solid #2a2f3a;       /* visual divider before the rail */
+}
+
+
+/* body holds the rail */
+.panel-body { background: #12141a; padding: 12px 10px; }   /* inner padding around the rail */
+
+/* "view all" button style */
+.btn-see-all {
+    display: inline-block;
+    padding: 10px 16px;
+    border-radius: 10px;
+    border: 1px solid #2a2f3a;
+    background: #1a1c24;
+    color: #a8d8ff;
+    font-weight: 700;
+    text-decoration: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.btn-see-all:hover {
+  background: #232635;
+  border-color: #7cc7ff;
+  box-shadow: 0 0 0 4px rgba(124,199,255,0.18);
+}
+
+/* compact rail inside the panel */
+.album-rail {
+    display: flex;
+    gap: 16px;
+    overflow-x: auto;
+    padding: 6px 4px;
+    scroll-snap-type: x mandatory;  /* snaps on trackpads */
+}
+.album-rail::-webkit-scrollbar { height: 8px; }
+.album-rail::-webkit-scrollbar-thumb { background: #2a2f3a; border-radius: 8px; }
+
+/* compact rail card (resure .album styles) */
+.album--rail {
+    width: 240px;       /* fixed card wifth for a neat strip*/
+    min-width: 240px;   /* so flex item doesn't shrink */
+    padding: 12px;
+    gap: 8px;
+    scroll-snap-align: start;
+}
+
+/* cover is small square thumb */
+.album--rail .cover {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    margin: 0 0 8px;
+}
+
+/* tightened typography */
+.album--rail .title {
+    margin: 0 0 6px;
+    font-size: 16px;
+    line-height: 1.3;
+    color: #e9edf1;
+}
+.album--rail .meta { margin: 0 0 8px; font-size: 13px; }
+.album--rail .tags { margin-top: auto; }
+
+.album--rail p:not(.meta):not(.tags) { display: none; }
+
+/* keep existing hover */
+.album-rail .album-link:hover .album,
+.album-rail .album:hover { 
+    transform: translateY(-2px) scale(1.01);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+    border-color: #2a3140;
+    z-index: 2;
+}
+
+/* consistent spacing between homepage sections */
+.page-section { margin-bottom: 40px; }
+
+.latest-reviews-section {
+    background: transparent;
+    border: none;
+    padding: 0;
+}
+
+footer {
+    padding-top: 40px;
+}

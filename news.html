@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>News</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="TheSwamp.png">
+
+</head>
+
+<body>
+    <header class="container">
+        <div class="header-row">
+            <h1>The Swamp</h1>
+            <nav aria-label="Primary">
+                <a href="index.html">Home</a>
+                <a href="album-reviews.html">Album Reviews</a>
+                <a href="new-releases.html">New Releases</a>
+                <a href="news.html"  class="active">News</a>
+                <a href="Playlists.html">Playlists</a>
+            </nav>
+        </div>
+    </header>
+
+<form class="search-box" role="search">
+    <input id="search" name="q" type="search"
+    placeholder="Search albums, artists, genres..." autocomplete="off" />
+    <button type="button" id="clear">Clear</button>
+</form>
+
+<main class="container">
+    <h2>News</h2>
+    <p class="hint">All you need to know about tour annoucments, album annoucments, new singles, and label signings.</p>
+
+    <div class="album-list" id="news-list">
+
+        <article class="album">
+            <img class="cover"
+            src="https://images.squarespace-cdn.com/content/v1/5a2eca820100276b66a6484d/1711125873032-BC7RS5S51IIUKDE698AK/February+02%2C+2024+137.jpeg"
+            alt="Greyhaven Tour"
+            loading="lazy">
+
+            <h2>Greyhaven 'Keep It Quiet' North American Tour</h2>
+
+            <p class="meta"><strong>Date:</strong> Nov 3, 2025 •
+            <strong>Source:</strong><a href="https://greyhavenband.com/pages/tour" target="_blank" rel="noopener noreferrer"> Greyhaven Official</a></p>
+            <p>It's offical! Greyhaven is hitting the road and touring North America in support of their killer new record 'Keep It Quiet'</p>
+            <p class="tags"><span class="tag">Tour</span>
+            <span class="tag">Greyhaven</span>
+            </p>
+        </article>
+
+
+    </div>
+</main>
+
+<footer class="container">
+     <small>© <span id="year"></span> The Swamp</small>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>

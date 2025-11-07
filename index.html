@@ -1,0 +1,77 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>The Swamp - Home</title>
+
+    <link rel="stylesheet" href="style.css">
+
+    <link rel="icon" type="image/png" href="TheSwamp.png">
+
+</head>
+
+<body>
+    <header class="container">
+        <div class="header-row">
+            <h1>The Swamp</h1>
+            <nav aria-label="Primary">
+                <a href="index.html" class="active">Home</a>
+                <a href="album-reviews.html">Album Reviews</a>
+                <a href="new-releases.html">New Releases</a>
+                <a href="news.html">News</a>
+                <a href="Playlists.html">Playlists</a>
+            </nav>
+        </div>
+    </header>
+
+<form class="search-box" role="search">
+    <input id="search" name="q" type="search"
+    placeholder="Search albums, artists, genres..." autocomplete="off" />
+    <button type="button" id="clear">Clear</button>
+</form>
+
+<main class="container">
+
+    <section class="page-section latest-reviews-section">
+        <div class="home-panel">
+        <div class="panel-head">
+            <div class="panel-head-left">
+            <h2 id="latest-reviews">Latest Reviews</h2>
+             <p class="hint">The latest music releases, reviewed just for you.</p>
+             </div>
+            <a href="album-reviews.html" class="btn-see-all">View all reviews</a>
+        </div>
+
+        <div class="panel-body">
+            <div class="album-rail" role="region" aria-label="Latest reviews">
+
+            <a href="reviews/keepitquiet-review.html" class="album-link">
+                <article class="album album--rail">
+                <img class="cover"
+                    src="https://solidstaterecords.store/cdn/shop/files/y-CIaDzd_456b79ff-0e41-4664-9815-5f6528ebea3e.jpg?v=1752879395"
+                    alt="Keep It Quiet cover"
+                    loading="lazy">
+                <h3 class="title">Keep It Quiet</h3>
+                <p class="meta"><strong>Artist:</strong> Greyhaven • <strong>Year:</strong> 2025 • <span class="rating">★★★★★</span></p>
+                <p class="tags">
+                    <span class="tag" tabindex="0" role="button">Metalcore</span>
+                    <span class="tag" tabindex="0" role="button">Metal</span>
+                </p>
+            </article>
+        </a>
+        </div>
+        </div>
+    </div>
+</section>
+
+</main>
+
+<footer class="container">
+     <small>© <span id="year"></span> The Swamp</small>
+</footer>
+
+<script src="script.js"></script>
+
+</body>
+</html>
